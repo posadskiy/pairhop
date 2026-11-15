@@ -49,6 +49,9 @@ if [[ "$mode" == "package" ]]; then
   app_id="$(/usr/libexec/PlistBuddy -c "Print :Entitlements:com.apple.application-identifier" "$profile_plist")"
   team_id="$(/usr/libexec/PlistBuddy -c "Print :Entitlements:com.apple.developer.team-identifier" "$profile_plist")"
   cp "$MAS_PROVISION_PROFILE" "$app/Contents/embedded.provisionprofile"
+  # A profile saved from a browser carries com.apple.quarantine, and App Store Connect rejects
+  # any file in the app that has it (error 91109). Clear every extended attribute.
+  xattr -cr "$app"
   signed="$(mktemp)"
   cp "$entitlements" "$signed"
   /usr/libexec/PlistBuddy -c "Add :com.apple.application-identifier string $app_id" "$signed"
