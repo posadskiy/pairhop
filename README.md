@@ -3,7 +3,7 @@
 [![Build](https://github.com/posadskiy/pairhop/actions/workflows/build.yml/badge.svg)](https://github.com/posadskiy/pairhop/actions/workflows/build.yml)
 [![Latest release](https://img.shields.io/github/v/release/posadskiy/pairhop)](https://github.com/posadskiy/pairhop/releases/latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Platform: macOS](https://img.shields.io/badge/platform-macOS%2013%2B-lightgrey)](#requirements)
+[![Platform: macOS](https://img.shields.io/badge/platform-macOS%2026%2B-lightgrey)](#requirements)
 
 Menu bar app for moving a Bluetooth keyboard, trackpad, or mouse from one
 Mac to another. macOS's Universal Control covers this only if both Macs are
@@ -78,7 +78,7 @@ The pairing code is stored in the Keychain.
 
 ## Requirements
 
-- macOS 13 (Ventura) or later
+- macOS 26 (Tahoe) or later, on an Apple Silicon Mac
 - A Bluetooth keyboard, trackpad, mouse, or other HID accessory
 
 ## Building from source

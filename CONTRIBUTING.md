@@ -6,7 +6,7 @@ between Macs, without adding configuration most people won't use.
 
 ## Development setup
 
-Requirements: macOS 13+ to run the app, Swift 6.0+ toolchain to build it
+Requirements: macOS 26+ to run the app, Swift 6.2+ toolchain to build it
 (ships with Xcode / Xcode Command Line Tools — no full Xcode project needed).
 
 ```bash

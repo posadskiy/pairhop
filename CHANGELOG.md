@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- The README and CONTRIBUTING name the real requirement, macOS 26 on Apple Silicon
+
 ## [0.2.0] - 2026-10-20
 
 ### Added
