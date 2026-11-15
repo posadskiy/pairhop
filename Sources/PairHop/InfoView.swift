@@ -46,6 +46,7 @@ struct InfoView: View {
 
             Divider()
 
+            #if !APPSTORE
             Button {
                 Updates.shared.check()
             } label: {
@@ -54,6 +55,7 @@ struct InfoView: View {
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.bordered)
+            #endif
 
             Button {
                 openIssueTracker()
