@@ -12,3 +12,4 @@ PairHop.app/
 .swiftpm/
 
 .private/
+.build-appstore/

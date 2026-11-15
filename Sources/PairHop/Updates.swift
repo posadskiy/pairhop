@@ -1,3 +1,4 @@
+#if !APPSTORE
 import Sparkle
 
 /// Sparkle reads the appcast attached to the latest GitHub release on its own schedule.
@@ -22,3 +23,12 @@ final class Updates {
         controller?.checkForUpdates(nil)
     }
 }
+#else
+/// The Mac App Store edition is updated by the store.
+@MainActor
+final class Updates {
+    static let shared = Updates()
+    func start() {}
+    func check() {}
+}
+#endif
