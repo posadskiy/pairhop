@@ -124,6 +124,14 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for more.
    `build/appcast.xml`. `./publish.sh` attaches them to the release, the feed last.
    Installed copies read `releases/latest/download/appcast.xml`.
 
+## Reporting a bug
+
+Settings → Troubleshooting → **Save Diagnostics…** writes a text file with PairHop's
+log and the Bluetooth messages for your accessories. **Report…** opens the GitHub bug form
+with your version and macOS already filled in. Drag the file into the form. It lists device
+names and addresses, so look it over first. Bluetooth problems often depend on the accessory,
+so the file is usually what gets one fixed.
+
 ## Contributing
 
 Bug reports, feature requests, and PRs are welcome — see

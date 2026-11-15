@@ -86,9 +86,7 @@ struct InfoView: View {
     }
 
     private func openIssueTracker() {
-        if let url = URL(string: "https://github.com/posadskiy/pairhop/issues/new/choose") {
-            NSWorkspace.shared.open(url)
-        }
+        NSWorkspace.shared.open(IssueLink.bugReport())
     }
 
     private func openThirdPartyLicenses() {

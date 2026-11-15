@@ -15,8 +15,8 @@ body:
     attributes:
       label: Steps to reproduce
       placeholder: |
-        1. Open PairHop, click Switch Devices
-        2. Slide switches off/on
+        1. Click the menu bar icon, then Use here
+        2. The keyboard does not connect
         3. ...
     validations:
       required: true
@@ -25,7 +25,7 @@ body:
     id: pairhop-version
     attributes:
       label: PairHop version
-      description: Menu bar icon → Settings, or the release you downloaded
+      description: Shown in Settings → About, or filled in for you by Settings → Report…
     validations:
       required: true
 
@@ -33,7 +33,7 @@ body:
     id: macos-version
     attributes:
       label: macOS version
-      placeholder: "e.g. macOS 15.1"
+      placeholder: "e.g. Version 26.1 (Build 25B78)"
     validations:
       required: true
 
@@ -43,7 +43,6 @@ body:
       label: Mac chip
       options:
         - Apple Silicon (M-series)
-        - Intel
     validations:
       required: true
 
@@ -66,5 +65,17 @@ body:
       label: Error message (if any)
       description: PairHop's error boxes have a copy button — paste the exact text here.
       render: text
+    validations:
+      required: false
+
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics
+      description: |
+        Settings → Troubleshooting → Save Diagnostics… writes a text file with PairHop's
+        log and the Bluetooth messages for your accessories. Drag it into this box.
+        It lists device names and addresses; open it first and remove anything you don't want public.
+        Bluetooth problems often depend on the accessory, so this is the fastest way to a fix.
     validations:
       required: false

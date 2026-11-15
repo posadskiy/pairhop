@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - PairHop updates itself with Sparkle, reading the appcast attached to the latest GitHub release. Check for Updates… is in About
+- Settings → Troubleshooting → Report… opens the GitHub bug form with the version and macOS filled in, and the form asks for the diagnostics file
 - `publish.sh` attaches the disk image, the update archive and the signed appcast to the GitHub release
 
 ### Changed

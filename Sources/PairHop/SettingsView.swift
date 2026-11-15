@@ -187,6 +187,8 @@ struct SettingsView: View {
                 .disabled(exporting)
                 Button("Clear") { clearDiagnostics() }
                     .disabled(exporting)
+                Button("Report…") { NSWorkspace.shared.open(IssueLink.bugReport()) }
+                    .help("Opens the GitHub bug form. Attach the saved diagnostics file to it.")
                 Spacer()
                 Button("About", action: onAbout)
                     .buttonStyle(.link)
@@ -263,7 +265,7 @@ struct SettingsView: View {
         guard let url = DiagnosticReport.chooseDestination() else { return }
         do {
             try report.write(to: url, atomically: true, encoding: .utf8)
-            exportNote = "Saved \(url.lastPathComponent)."
+            exportNote = "Saved \(url.lastPathComponent). Attach it when you tap Report…."
             errorMessage = nil
             NSWorkspace.shared.activateFileViewerSelecting([url])
         } catch {
