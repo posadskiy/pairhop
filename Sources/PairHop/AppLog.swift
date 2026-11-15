@@ -6,7 +6,7 @@ import os
 /// unless they are marked public, so the text file is what a problem report
 /// should contain.
 enum AppLog {
-    static let subsystem = "com.posadskiy.perihop"
+    static let subsystem = "com.posadskiy.pairhop"
 
     static let bluetooth = Channel("Bluetooth")
     static let switchFlow = Channel("SwitchFlow")
@@ -60,7 +60,7 @@ enum IOReturnLabel {
 }
 
 enum LogFile {
-    private static let queue = DispatchQueue(label: "com.posadskiy.perihop.logfile")
+    private static let queue = DispatchQueue(label: "com.posadskiy.pairhop.logfile")
     private static let maxBytes = 1_500_000
     private static let mirrorToFile: Bool = {
         let info = ProcessInfo.processInfo
@@ -68,12 +68,12 @@ enum LogFile {
         if info.environment["XCTestSessionIdentifier"] != nil { return false }
         let name = info.processName.lowercased()
         if name.contains("xctest") { return false }
-        return Bundle.main.bundleIdentifier == "com.posadskiy.perihop"
+        return Bundle.main.bundleIdentifier == "com.posadskiy.pairhop"
     }()
 
     static var url: URL {
         let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-        return appSupport.appendingPathComponent("PeriHop/diagnostics.log", isDirectory: false)
+        return appSupport.appendingPathComponent("PairHop/diagnostics.log", isDirectory: false)
     }
 
     static func append(category: String, level: OSLogType, _ message: String) {

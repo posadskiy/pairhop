@@ -8,7 +8,7 @@ struct HandoffNotifier: Sendable {
         center.requestAuthorization(options: [.alert, .sound]) { granted, _ in
             guard granted else { return }
             let content = UNMutableNotificationContent()
-            content.title = "PeriHop"
+            content.title = "PairHop"
             content.body = body
             let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
             center.add(request)

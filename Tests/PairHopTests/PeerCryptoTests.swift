@@ -1,7 +1,7 @@
 import CryptoKit
 import Foundation
 import Testing
-@testable import PeriHop
+@testable import PairHop
 
 struct PeerCryptoTests {
     @Test func bothSidesDeriveTheSameSessionKey() throws {

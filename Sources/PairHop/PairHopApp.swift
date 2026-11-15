@@ -2,13 +2,13 @@ import AppKit
 import SwiftUI
 
 @main
-struct PeriHopApp: App {
+struct PairHopApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
 
     var body: some Scene {
         // SwiftUI's menu bar window draws no icon and turns transparent when its content
         // changes size. The status item in StatusMenu owns the panel and keeps it under the icon.
-        MenuBarExtra("PeriHop", isInserted: .constant(false)) {
+        MenuBarExtra("PairHop", isInserted: .constant(false)) {
             EmptyView()
         }
     }

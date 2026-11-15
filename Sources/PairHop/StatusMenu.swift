@@ -27,7 +27,7 @@ final class StatusMenu: NSObject {
         item.button?.imageScaling = .scaleProportionallyDown
         item.button?.target = self
         item.button?.action = #selector(toggle)
-        item.button?.setAccessibilityLabel("PeriHop")
+        item.button?.setAccessibilityLabel("PairHop")
         statusItem = item
         updateIcon()
         iconCancellable = model.objectWillChange
@@ -39,11 +39,11 @@ final class StatusMenu: NSObject {
 
     func updateIcon() {
         let symbol = model?.menuSymbol ?? "keyboard"
-        let configured = NSImage(systemSymbolName: symbol, accessibilityDescription: "PeriHop")?
+        let configured = NSImage(systemSymbolName: symbol, accessibilityDescription: "PairHop")?
             .withSymbolConfiguration(.init(pointSize: 15, weight: .regular))
         configured?.isTemplate = true
         statusItem?.button?.image = configured
-        statusItem?.button?.setAccessibilityLabel("PeriHop")
+        statusItem?.button?.setAccessibilityLabel("PairHop")
     }
 
     func relayoutSoon() {
@@ -55,7 +55,7 @@ final class StatusMenu: NSObject {
         }
     }
 
-    /// Opens the panel, for `perihop://show`.
+    /// Opens the panel, for `pairhop://show`.
     func open() {
         guard panel?.isVisible != true else { return }
         show()

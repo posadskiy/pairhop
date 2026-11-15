@@ -17,7 +17,7 @@ struct InfoView: View {
                 .buttonStyle(.plain)
                 .foregroundStyle(.secondary)
                 .accessibilityLabel("Back")
-                Text("PeriHop").font(.headline)
+                Text("PairHop").font(.headline)
                 Spacer()
                 Text("Version \(version)")
                     .font(.caption)
@@ -39,7 +39,7 @@ struct InfoView: View {
                         .font(.caption)
                 }
                 labeledRow("GitHub") {
-                    Link("posadskiy/perihop", destination: URL(string: "https://github.com/posadskiy/perihop")!)
+                    Link("posadskiy/pairhop", destination: URL(string: "https://github.com/posadskiy/pairhop")!)
                         .font(.caption)
                 }
             }
@@ -77,7 +77,7 @@ struct InfoView: View {
     }
 
     private func openIssueTracker() {
-        if let url = URL(string: "https://github.com/posadskiy/perihop/issues/new/choose") {
+        if let url = URL(string: "https://github.com/posadskiy/pairhop/issues/new/choose") {
             NSWorkspace.shared.open(url)
         }
     }
@@ -88,7 +88,7 @@ struct InfoView: View {
         // back to GitHub for `swift run` dev builds, which have no bundle.
         if let url = Bundle.main.url(forResource: "THIRD_PARTY_LICENSES", withExtension: "md") {
             NSWorkspace.shared.open(url)
-        } else if let url = URL(string: "https://github.com/posadskiy/perihop/blob/main/THIRD_PARTY_LICENSES.md") {
+        } else if let url = URL(string: "https://github.com/posadskiy/pairhop/blob/main/THIRD_PARTY_LICENSES.md") {
             NSWorkspace.shared.open(url)
         }
     }

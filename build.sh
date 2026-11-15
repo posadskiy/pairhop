@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Build a Developer ID signed, notarized PeriHop.dmg for the website.
+# Build a Developer ID signed, notarized PairHop.dmg for the website.
 #   ./build.sh
 #
-# The app lands in build/PeriHop.app and the disk image in build/PeriHop.dmg.
+# The app lands in build/PairHop.app and the disk image in build/PairHop.dmg.
 # Apple Silicon only. The macOS 27 SDK deprecates x86_64 for this deployment target.
 #
 # The certificate is the only Developer ID Application identity in the login keychain, or
@@ -58,7 +58,7 @@ else
   exit 1
 fi
 
-if [[ -z "${PERIHOP_SKIP_TEST:-}" ]]; then
+if [[ -z "${PAIRHOP_SKIP_TEST:-}" ]]; then
   swift test
 fi
 
@@ -66,16 +66,16 @@ echo "==> Building (release, arm64)..."
 swift build -c release --arch arm64
 bin="$(swift build -c release --arch arm64 --show-bin-path)"
 
-app="build/PeriHop.app"
+app="build/PairHop.app"
 rm -rf "$app"
 mkdir -p "$app/Contents/MacOS" "$app/Contents/Resources"
-cp "$bin/PeriHop" "$app/Contents/MacOS/PeriHop"
-cp "Sources/PeriHop/Info.plist" "$app/Contents/Info.plist"
+cp "$bin/PairHop" "$app/Contents/MacOS/PairHop"
+cp "Sources/PairHop/Info.plist" "$app/Contents/Info.plist"
 cp "Resources/AppIcon.icns" "$app/Contents/Resources/AppIcon.icns"
 cp "THIRD_PARTY_LICENSES.md" "$app/Contents/Resources/THIRD_PARTY_LICENSES.md"
 
-if ! lipo -archs "$app/Contents/MacOS/PeriHop" | grep -qx "arm64"; then
-  echo "$app is not an arm64 build: $(lipo -archs "$app/Contents/MacOS/PeriHop")" >&2
+if ! lipo -archs "$app/Contents/MacOS/PairHop" | grep -qx "arm64"; then
+  echo "$app is not an arm64 build: $(lipo -archs "$app/Contents/MacOS/PairHop")" >&2
   exit 1
 fi
 
@@ -86,7 +86,7 @@ work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT
 
 # Staple the ticket onto the app before it goes inside the disk image.
-notarize_zip="$work/PeriHop-notarize.zip"
+notarize_zip="$work/PairHop-notarize.zip"
 ditto -c -k --keepParent "$app" "$notarize_zip"
 echo "==> Notarizing the app..."
 xcrun notarytool submit "$notarize_zip" "${notarize[@]}" --wait
@@ -95,12 +95,12 @@ xcrun stapler validate "$app"
 
 stage="$work/dmg"
 mkdir -p "$stage"
-ditto "$app" "$stage/PeriHop.app"
+ditto "$app" "$stage/PairHop.app"
 ln -s /Applications "$stage/Applications"
 
-dmg="build/PeriHop.dmg"
+dmg="build/PairHop.dmg"
 echo "==> Creating $dmg..."
-hdiutil create -volname "PeriHop" -srcfolder "$stage" -ov -format UDZO "$dmg"
+hdiutil create -volname "PairHop" -srcfolder "$stage" -ov -format UDZO "$dmg"
 # Gatekeeper checks the disk image signature. The signed app inside is not enough.
 codesign --force --timestamp --sign "$identity" "$dmg"
 codesign --verify --verbose=2 "$dmg"
@@ -114,5 +114,5 @@ spctl --assess --type open --context context:primary-signature --verbose=4 "$dmg
 echo "Wrote $dmg ($(shasum -a 256 "$dmg" | cut -d' ' -f1))"
 echo "Signed app: $app"
 echo "Install over the existing copy:"
-echo "  osascript -e 'quit app \"PeriHop\"' || true"
-echo "  ditto \"$PWD/$app\" /Applications/PeriHop.app"
+echo "  osascript -e 'quit app \"PairHop\"' || true"
+echo "  ditto \"$PWD/$app\" /Applications/PairHop.app"

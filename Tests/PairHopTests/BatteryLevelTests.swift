@@ -1,6 +1,6 @@
 import Foundation
 import Testing
-@testable import PeriHop
+@testable import PairHop
 
 struct BatteryLevelTests {
     @Test func zeroFromBluetoothIsHiddenUntilTheRegistryHasALevel() {

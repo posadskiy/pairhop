@@ -1,5 +1,5 @@
 import Testing
-@testable import PeriHop
+@testable import PairHop
 
 @Suite struct MenuPanelPlacementTests {
     private let button = PanelRect(x: 900, y: 850, width: 28, height: 24)

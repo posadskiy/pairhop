@@ -221,7 +221,7 @@ struct SettingsView: View {
         case .untrusted:
             return "Linked, but the other Mac now shows a different code."
         case .outdated:
-            return "Linked. The other Mac runs an older PeriHop and needs an update."
+            return "Linked. The other Mac runs an older PairHop and needs an update."
         }
     }
 

@@ -2,7 +2,7 @@ import AppKit
 import Foundation
 import UniformTypeIdentifiers
 
-/// A text file the other Mac can save and send back. It contains PeriHop's
+/// A text file the other Mac can save and send back. It contains PairHop's
 /// own log plus the Bluetooth messages for the configured accessories, which
 /// is where a refused link key shows up.
 enum DiagnosticReport {
@@ -14,9 +14,9 @@ enum DiagnosticReport {
         async let bluetooth = runLog(predicate: bluetoothPredicate(addresses: addresses), start: start)
         let sections = await [
             header(devices: devices),
-            section("PeriHop log", appLog.isEmpty ? "No PeriHop log yet.\n" : appLog),
+            section("PairHop log", appLog.isEmpty ? "No PairHop log yet.\n" : appLog),
             section("Unified log, subsystem \(AppLog.subsystem), since \(stamp(start))", unified),
-            section("Bluetooth log for PeriHop and these accessories, since \(stamp(start))", bluetooth),
+            section("Bluetooth log for PairHop and these accessories, since \(stamp(start))", bluetooth),
         ]
         return sections.joined(separator: "\n")
     }
@@ -26,7 +26,7 @@ enum DiagnosticReport {
         let panel = NSSavePanel()
         panel.allowedContentTypes = [.plainText]
         panel.canCreateDirectories = true
-        panel.title = "Save PeriHop diagnostics"
+        panel.title = "Save PairHop diagnostics"
         panel.prompt = "Save"
         panel.nameFieldStringValue = fileName()
         guard panel.runModal() == .OK else { return nil }
@@ -35,7 +35,7 @@ enum DiagnosticReport {
 
     static let clearedAtKey = "diagnosticsSince"
 
-    /// Drops the saved PeriHop log and ignores system-log lines from before now.
+    /// Drops the saved PairHop log and ignores system-log lines from before now.
     static func clear() {
         UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: clearedAtKey)
         LogFile.clear()
@@ -50,8 +50,8 @@ enum DiagnosticReport {
 
     static func bluetoothPredicate(addresses: [DeviceAddress]) -> String {
         var parts = [
-            "(process == \"PeriHop\" AND subsystem == \"com.apple.bluetooth\")",
-            "(process == \"bluetoothd\" AND (eventMessage CONTAINS \"perihop\" OR eventMessage CONTAINS \"INVALID_LINK_KEY\" OR eventMessage CONTAINS \"HID Host\"))",
+            "(process == \"PairHop\" AND subsystem == \"com.apple.bluetooth\")",
+            "(process == \"bluetoothd\" AND (eventMessage CONTAINS \"pairhop\" OR eventMessage CONTAINS \"INVALID_LINK_KEY\" OR eventMessage CONTAINS \"HID Host\"))",
         ]
         for address in addresses {
             let colon = address.rawValue.replacingOccurrences(of: "-", with: ":")
@@ -67,7 +67,7 @@ enum DiagnosticReport {
         let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "?"
         let host = Host.current().localizedName ?? ProcessInfo.processInfo.hostName
         var lines = [
-            "PeriHop diagnostics",
+            "PairHop diagnostics",
             "Host: \(host)",
             "Date: \(stamp(Date()))",
             "macOS: \(ProcessInfo.processInfo.operatingSystemVersionString)",
@@ -101,7 +101,7 @@ enum DiagnosticReport {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.dateFormat = "yyyyMMdd-HHmm"
-        return "PeriHop-\(host)-\(formatter.string(from: Date())).txt"
+        return "PairHop-\(host)-\(formatter.string(from: Date())).txt"
     }
 
     private static func logStart(_ date: Date) -> String {
@@ -132,7 +132,7 @@ enum DiagnosticReport {
 
     private static func collectLog(predicate: String, start: Date) -> String {
         let output = FileManager.default.temporaryDirectory
-            .appendingPathComponent("perihop-log-\(UUID().uuidString).txt")
+            .appendingPathComponent("pairhop-log-\(UUID().uuidString).txt")
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/usr/bin/log")
         process.arguments = [

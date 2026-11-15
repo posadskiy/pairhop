@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
     <key>CFBundleName</key>
-    <string>PeriHop</string>
+    <string>PairHop</string>
     <key>CFBundleDisplayName</key>
-    <string>PeriHop</string>
+    <string>PairHop</string>
     <key>CFBundleIdentifier</key>
-    <string>com.posadskiy.perihop</string>
+    <string>com.posadskiy.pairhop</string>
     <key>CFBundleVersion</key>
     <string>3</string>
     <key>CFBundleShortVersionString</key>
@@ -15,7 +15,7 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleExecutable</key>
-    <string>PeriHop</string>
+    <string>PairHop</string>
     <key>CFBundleIconFile</key>
     <string>AppIcon</string>
     <key>LSUIElement</key>
@@ -25,11 +25,11 @@
     <key>NSHighResolutionCapable</key>
     <true/>
     <key>NSBluetoothAlwaysUsageDescription</key>
-    <string>PeriHop uses Bluetooth to move your keyboard and trackpad between your Macs, and to reach your other Mac when the network cannot.</string>
+    <string>PairHop uses Bluetooth to move your keyboard and trackpad between your Macs, and to reach your other Mac when the network cannot.</string>
     <key>NSBluetoothPeripheralUsageDescription</key>
-    <string>PeriHop needs Bluetooth access to move your keyboard and trackpad to this Mac.</string>
+    <string>PairHop needs Bluetooth access to move your keyboard and trackpad to this Mac.</string>
     <key>NSLocalNetworkUsageDescription</key>
-    <string>PeriHop finds your other Mac on the local network so it can hand off the keyboard and trackpad.</string>
+    <string>PairHop finds your other Mac on the local network so it can hand off the keyboard and trackpad.</string>
     <key>NSBonjourServices</key>
     <array>
         <string>_perihop._tcp</string>
@@ -38,10 +38,10 @@
     <array>
         <dict>
             <key>CFBundleURLName</key>
-            <string>com.posadskiy.perihop</string>
+            <string>com.posadskiy.pairhop</string>
             <key>CFBundleURLSchemes</key>
             <array>
-                <string>perihop</string>
+                <string>pairhop</string>
             </array>
         </dict>
     </array>

@@ -1,12 +1,12 @@
 name: Feature Request
-description: Suggest something PeriHop should do
+description: Suggest something PairHop should do
 labels: ["enhancement"]
 body:
   - type: textarea
     id: problem
     attributes:
       label: What problem does this solve?
-      description: What are you trying to do that PeriHop doesn't support today?
+      description: What are you trying to do that PairHop doesn't support today?
     validations:
       required: true
 

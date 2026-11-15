@@ -19,7 +19,7 @@ final class BluetoothLink: NSObject, @unchecked Sendable {
         let continuation: CheckedContinuation<PeerStream, Error>
     }
 
-    private let queue = DispatchQueue(label: "com.posadskiy.perihop.ble")
+    private let queue = DispatchQueue(label: "com.posadskiy.pairhop.ble")
     private var central: CBCentralManager?
     private var publisher: CBPeripheralManager?
     private var serviceID: CBUUID?
@@ -137,7 +137,7 @@ extension BluetoothLink: CBPeripheralManagerDelegate {
             psm = nil
             return
         }
-        // The frames are sealed by PeriHop, so the channel needs no
+        // The frames are sealed by PairHop, so the channel needs no
         // Bluetooth pairing between the Macs.
         peripheral.publishL2CAPChannel(withEncryption: false)
     }

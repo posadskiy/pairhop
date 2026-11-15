@@ -68,7 +68,7 @@ private struct DevicesPage: View {
             } else if model.peerState == .outdated {
                 Notice(
                     symbol: "arrow.down.circle",
-                    text: "The other Mac runs an older PeriHop. Update it so the two can switch."
+                    text: "The other Mac runs an older PairHop. Update it so the two can switch."
                 )
             }
 
@@ -95,7 +95,7 @@ private struct DevicesPage: View {
                 Button("Edit Devices…", action: onSetup)
                     .disabled(handoff.isSwitching)
                 Spacer()
-                Button("Quit PeriHop") { NSApplication.shared.terminate(nil) }
+                Button("Quit PairHop") { NSApplication.shared.terminate(nil) }
             }
             .buttonStyle(.plain)
             .font(.caption)
@@ -107,7 +107,7 @@ private struct DevicesPage: View {
 
     private var header: some View {
         HStack(spacing: 8) {
-            Text("PeriHop").font(.headline)
+            Text("PairHop").font(.headline)
             Spacer()
             PeerBadge(state: model.peerState, action: onSettings)
             Button(action: onSettings) {
@@ -298,7 +298,7 @@ private struct PeerBadge: View {
         case .untrusted:
             return "The other Mac's pairing code changed."
         case .outdated:
-            return "The other Mac runs an older PeriHop."
+            return "The other Mac runs an older PairHop."
         }
     }
 }

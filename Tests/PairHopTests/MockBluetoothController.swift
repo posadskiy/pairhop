@@ -1,5 +1,5 @@
 import Foundation
-@testable import PeriHop
+@testable import PairHop
 
 /// A radio with one-host accessories. An accessory that is `listening`
 /// accepts a pairing, and comes up connected when it does, as a Magic

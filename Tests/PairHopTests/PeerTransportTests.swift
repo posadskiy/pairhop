@@ -3,7 +3,7 @@ import Foundation
 import IOKit
 import Network
 import Testing
-@testable import PeriHop
+@testable import PairHop
 
 struct SessionCipherTests {
     @Test func replayedFrameIsRejected() throws {

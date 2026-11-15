@@ -42,7 +42,7 @@ final class AppModel: ObservableObject {
     }
 
     #if DEBUG
-    /// Page the menu is asked to show by `perihop://snapshot`.
+    /// Page the menu is asked to show by `pairhop://snapshot`.
     @Published var debugPage = "devices"
     #endif
 
@@ -470,10 +470,10 @@ final class AppModel: ObservableObject {
         }
     }
 
-    /// `perihop://switch?direction=take|send|toggle&peripheral=name` moves
-    /// devices. `perihop://show` opens the menu.
+    /// `pairhop://switch?direction=take|send|toggle&peripheral=name` moves
+    /// devices. `pairhop://show` opens the menu.
     func open(_ url: URL) {
-        guard url.scheme == "perihop" else { return }
+        guard url.scheme == "pairhop" else { return }
         AppLog.switchFlow.info("url \(url.absoluteString)")
         if url.host == "show" {
             StatusMenu.shared.open()

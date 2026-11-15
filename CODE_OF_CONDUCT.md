@@ -43,9 +43,9 @@ project in public spaces.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported by opening a [GitHub issue](https://github.com/posadskiy/perihop/issues)
+reported by opening a [GitHub issue](https://github.com/posadskiy/pairhop/issues)
 or, for sensitive reports, via a private
-[security advisory](https://github.com/posadskiy/perihop/security/advisories/new).
+[security advisory](https://github.com/posadskiy/pairhop/security/advisories/new).
 All complaints will be reviewed and investigated promptly and fairly.
 
 ## Attribution

@@ -9,7 +9,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "Sources/PeriHop/Info.plist"
+      - "Sources/PairHop/Info.plist"
   workflow_dispatch:
 
 permissions:
@@ -26,7 +26,7 @@ jobs:
       - name: Read version from Info.plist
         id: version
         run: |
-          VERSION=$(/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" Sources/PeriHop/Info.plist)
+          VERSION=$(/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" Sources/PairHop/Info.plist)
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
 
@@ -53,4 +53,4 @@ jobs:
           tag_name: ${{ steps.version.outputs.tag }}
           generate_release_notes: true
           body: |
-            Notarized build. Open PeriHop.dmg and drag PeriHop to Applications.
+            Notarized build. Open PairHop.dmg and drag PairHop to Applications.

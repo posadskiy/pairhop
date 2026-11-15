@@ -1,6 +1,6 @@
-# Contributing to PeriHop
+# Contributing to PairHop
 
-Thanks for considering a contribution. PeriHop is a small, focused tool, so
+Thanks for considering a contribution. PairHop is a small, focused tool, so
 the bar for "does this fit" is: does it help switch Bluetooth peripherals
 between Macs, without adding configuration most people won't use.
 
@@ -10,8 +10,8 @@ Requirements: macOS 13+ to run the app, Swift 6.0+ toolchain to build it
 (ships with Xcode / Xcode Command Line Tools — no full Xcode project needed).
 
 ```bash
-git clone https://github.com/posadskiy/perihop.git
-cd perihop
+git clone https://github.com/posadskiy/pairhop.git
+cd pairhop
 swift build
 ```
 
@@ -21,7 +21,7 @@ To run it as a real menu bar app (needed to test anything involving
 ```bash
 export NOTARY_KEYCHAIN_PROFILE="grammarbar-notary"
 ./build.sh
-open build/PeriHop.app
+open build/PairHop.app
 ```
 
 `./build.sh` needs the Developer ID certificate in the login keychain and
@@ -81,7 +81,7 @@ isn't needed there.
 ## Releasing
 
 Bump `CFBundleShortVersionString` in
-[`Sources/PeriHop/Info.plist`](Sources/PeriHop/Info.plist), update
+[`Sources/PairHop/Info.plist`](Sources/PairHop/Info.plist), update
 `CHANGELOG.md`, and merge to `main`. The
 [release workflow](.github/workflows/release.yml) tags that version and
 opens a GitHub Release. It does not build the app: GitHub's runners do not
@@ -91,16 +91,16 @@ On the Mac that signs GrammarBar, with `NOTARY_KEYCHAIN_PROFILE` set:
 
 ```bash
 ./build.sh
-gh release upload vX.Y.Z build/PeriHop.dmg
+gh release upload vX.Y.Z build/PairHop.dmg
 ```
 
-`build/PeriHop.dmg` is the file to put on the website. To trigger the
+`build/PairHop.dmg` is the file to put on the website. To trigger the
 workflow without a version bump, use **Actions → Release → Run workflow** —
 it's a no-op if that version was already released.
 
 ## Reporting bugs / requesting features
 
-Use the [issue templates](https://github.com/posadskiy/perihop/issues/new/choose).
+Use the [issue templates](https://github.com/posadskiy/pairhop/issues/new/choose).
 For anything security-related, please use a
-[private security advisory](https://github.com/posadskiy/perihop/security/advisories/new)
+[private security advisory](https://github.com/posadskiy/pairhop/security/advisories/new)
 instead of a public issue — see [SECURITY.md](SECURITY.md).

@@ -1,6 +1,6 @@
 import Testing
 import Foundation
-@testable import PeriHop
+@testable import PairHop
 
 struct DockDisplayTests {
     @Test func listsExternalNamesAndSkipsTheBuiltInPanel() {

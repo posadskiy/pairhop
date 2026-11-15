@@ -1,7 +1,7 @@
 import Foundation
 import Network
 
-/// One PeriHop service seen over Bonjour.
+/// One PairHop service seen over Bonjour.
 struct PeerSighting: Hashable, Sendable {
     var name: String
     /// TXT `fp`: fingerprint of the advertiser's pairing code.

@@ -2,12 +2,12 @@
 import PackageDescription
 
 let package = Package(
-    name: "PeriHop",
+    name: "PairHop",
     platforms: [.macOS(.v26)],
     targets: [
         .executableTarget(
-            name: "PeriHop",
-            path: "Sources/PeriHop",
+            name: "PairHop",
+            path: "Sources/PairHop",
             exclude: ["Info.plist"],
             linkerSettings: [
                 .linkedFramework("IOBluetooth"),
@@ -17,9 +17,9 @@ let package = Package(
             ]
         ),
         .testTarget(
-            name: "PeriHopTests",
-            dependencies: ["PeriHop"],
-            path: "Tests/PeriHopTests"
+            name: "PairHopTests",
+            dependencies: ["PairHop"],
+            path: "Tests/PairHopTests"
         )
     ]
 )

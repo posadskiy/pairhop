@@ -1,5 +1,5 @@
 name: Bug Report
-description: Something in PeriHop isn't working right
+description: Something in PairHop isn't working right
 labels: ["bug"]
 body:
   - type: textarea
@@ -15,16 +15,16 @@ body:
     attributes:
       label: Steps to reproduce
       placeholder: |
-        1. Open PeriHop, click Switch Devices
+        1. Open PairHop, click Switch Devices
         2. Slide switches off/on
         3. ...
     validations:
       required: true
 
   - type: input
-    id: perihop-version
+    id: pairhop-version
     attributes:
-      label: PeriHop version
+      label: PairHop version
       description: Menu bar icon → Settings, or the release you downloaded
     validations:
       required: true
@@ -64,7 +64,7 @@ body:
     id: error-message
     attributes:
       label: Error message (if any)
-      description: PeriHop's error boxes have a copy button — paste the exact text here.
+      description: PairHop's error boxes have a copy button — paste the exact text here.
       render: text
     validations:
       required: false

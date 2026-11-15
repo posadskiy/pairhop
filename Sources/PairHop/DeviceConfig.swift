@@ -62,7 +62,7 @@ struct DeviceConfig: Codable, Equatable, Sendable {
 enum DeviceConfigStore {
     private static var directoryURL: URL {
         let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-        return appSupport.appendingPathComponent("PeriHop", isDirectory: true)
+        return appSupport.appendingPathComponent("PairHop", isDirectory: true)
     }
 
     private static var fileURL: URL {

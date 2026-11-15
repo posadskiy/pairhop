@@ -9,7 +9,7 @@ struct KeychainError: Error, LocalizedError, Equatable {
 }
 
 enum KeychainStore {
-    private static let service = "com.posadskiy.perihop.peer-code"
+    private static let service = "com.posadskiy.pairhop.peer-code"
 
     private static var itemQuery: [String: Any] {
         [

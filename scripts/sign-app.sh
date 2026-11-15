@@ -1,6 +1,6 @@
 #!/bin/bash
-# Sign PeriHop.app with the hardened runtime so notarization accepts it.
-#   scripts/sign-app.sh build/PeriHop.app "Developer ID Application: Name (TEAMID)"
+# Sign PairHop.app with the hardened runtime so notarization accepts it.
+#   scripts/sign-app.sh build/PairHop.app "Developer ID Application: Name (TEAMID)"
 set -euo pipefail
 
 app="${1:?app path}"

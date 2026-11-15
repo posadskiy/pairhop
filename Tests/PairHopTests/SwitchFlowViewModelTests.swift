@@ -1,6 +1,6 @@
 import Foundation
 import Testing
-@testable import PeriHop
+@testable import PairHop
 
 @MainActor
 struct HandoffCoordinatorTests {

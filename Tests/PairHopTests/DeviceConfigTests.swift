@@ -1,6 +1,6 @@
 import Testing
 import Foundation
-@testable import PeriHop
+@testable import PairHop
 
 struct DeviceConfigTests {
     @Test func roundTripsThroughJSON() throws {
