@@ -70,7 +70,7 @@ def prepare(raw, scale):
     elif name == "settings-triggers.png":
         shot = cut(img, (0, 0, w, h), cut_top=True, cut_bottom=True)
     elif name == "edit-devices.png":
-        shot = cut(img, (3, 1, 683, h - 4))
+        shot = cut(img, (4, 4, 684, h - 6))
     elif name == "panel-other.png":
         shot = cut(img, (4, 4, 684, h - 7))
     else:
