@@ -10,6 +10,9 @@ actor PeerListener {
         var instance: String
     }
 
+    /// Still the name from before PeriHop became PairHop, so a renamed Mac and one on an
+    /// older build find each other. The handshake labels in PeerCrypto and the Bluetooth LE
+    /// identifiers keep it for the same reason.
     static let serviceType = "_perihop._tcp"
 
     private var listener: NWListener?

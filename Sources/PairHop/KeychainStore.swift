@@ -11,11 +11,35 @@ struct KeychainError: Error, LocalizedError, Equatable {
 enum KeychainStore {
     private static let service = "com.posadskiy.pairhop.peer-code"
 
-    private static var itemQuery: [String: Any] {
+    private static let legacyService = "com.posadskiy.perihop.peer-code"
+
+    private static var itemQuery: [String: Any] { query(for: service) }
+
+    private static func query(for service: String) -> [String: Any] {
         [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: service,
         ]
+    }
+
+    /// PeriHop kept the code under another name. Copies it across, then removes the old item.
+    /// macOS may ask to allow the new app to read it; if that is declined the code is
+    /// entered again in Settings.
+    static func adoptLegacyCode() {
+        guard readCode() == nil else { return }
+        var query = query(for: legacyService)
+        query[kSecReturnData as String] = true
+        query[kSecMatchLimit as String] = kSecMatchLimitOne
+        var item: CFTypeRef?
+        guard SecItemCopyMatching(query as CFDictionary, &item) == errSecSuccess,
+              let data = item as? Data,
+              let code = String(data: data, encoding: .utf8), !code.isEmpty else { return }
+        do {
+            try saveCode(code)
+            SecItemDelete(self.query(for: legacyService) as CFDictionary)
+        } catch {
+            AppLog.config.error("Could not carry the pairing code over: \(error)")
+        }
     }
 
     static func readCode() -> String? {

@@ -471,9 +471,10 @@ final class AppModel: ObservableObject {
     }
 
     /// `pairhop://switch?direction=take|send|toggle&peripheral=name` moves
-    /// devices. `pairhop://show` opens the menu.
+    /// devices. `pairhop://show` opens the menu. `perihop://` links from before the
+    /// rename still work.
     func open(_ url: URL) {
-        guard url.scheme == "pairhop" else { return }
+        guard url.scheme == "pairhop" || url.scheme == "perihop" else { return }
         AppLog.switchFlow.info("url \(url.absoluteString)")
         if url.host == "show" {
             StatusMenu.shared.open()

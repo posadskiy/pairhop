@@ -50,6 +50,7 @@
             <key>CFBundleURLSchemes</key>
             <array>
                 <string>pairhop</string>
+                <string>perihop</string>
             </array>
         </dict>
     </array>

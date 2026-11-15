@@ -33,6 +33,10 @@ opens it on double-click. macOS will ask for Bluetooth access the first time
 you scan for or switch devices — grant it in the prompt, or in
 **System Settings → Privacy & Security → Bluetooth** if you missed it.
 
+PairHop was called PeriHop up to 0.3. It installs as a separate app: move your
+settings over by launching it once, then delete the old PeriHop.app. Old `perihop://`
+links still work.
+
 PairHop updates itself with [Sparkle](https://sparkle-project.org), reading the
 `appcast.xml` attached to the latest GitHub release. Copies of 0.3.0 and earlier
 do not have it, so install the next release by hand once.

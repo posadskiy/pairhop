@@ -16,7 +16,10 @@ struct PairHopApp: App {
 
 @MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate {
-    let model = AppModel()
+    let model: AppModel = {
+        LegacyMigration.run()
+        return AppModel()
+    }()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.accessory)
