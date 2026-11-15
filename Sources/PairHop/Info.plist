@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleName</key>
+    <string>PairHop</string>
+    <key>CFBundleDisplayName</key>
+    <string>PairHop</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.posadskiy.pairhop</string>
+    <key>CFBundleVersion</key>
+    <string>4</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleExecutable</key>
+    <string>PairHop</string>
+    <key>CFBundleIconFile</key>
+    <string>AppIcon</string>
+    <key>LSUIElement</key>
+    <true/>
+    <key>LSMinimumSystemVersion</key>
+    <string>26.0</string>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+    <key>NSBluetoothAlwaysUsageDescription</key>
+    <string>PairHop uses Bluetooth to move your keyboard and trackpad between your Macs, and to reach your other Mac when the network cannot.</string>
+    <key>NSBluetoothPeripheralUsageDescription</key>
+    <string>PairHop needs Bluetooth access to move your keyboard and trackpad to this Mac.</string>
+    <key>NSLocalNetworkUsageDescription</key>
+    <string>PairHop finds your other Mac on the local network so it can hand off the keyboard and trackpad.</string>
+    <key>NSBonjourServices</key>
+    <array>
+        <string>_perihop._tcp</string>
+    </array>
+    <key>SUEnableAutomaticChecks</key>
+    <true/>
+    <key>SUAutomaticallyUpdate</key>
+    <true/>
+    <key>SUScheduledCheckInterval</key>
+    <integer>86400</integer>
+    <key>SUScheduledImpatientCheckInterval</key>
+    <integer>172800</integer>
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLName</key>
+            <string>com.posadskiy.pairhop</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>pairhop</string>
+                <string>perihop</string>
+            </array>
+        </dict>
+    </array>
+</dict>
+</plist>

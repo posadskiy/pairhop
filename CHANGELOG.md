@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-11-15
+
+### Added
+- PairHop updates itself with Sparkle, reading the appcast attached to the latest GitHub release. Check for Updates… is in About
+- Settings → Troubleshooting → Report… opens the GitHub bug form with the version and macOS filled in, and the form asks for the diagnostics file
+- `publish.sh` attaches the disk image, the update archive and the signed appcast to the GitHub release
+
+### Changed
+- PeriHop is now PairHop. The bundle ID is `com.posadskiy.pairhop`, so macOS asks for Bluetooth access again, and Launch at Login has to be turned on again. The saved devices, the log and the pairing code are carried over on first launch. `perihop://` links keep working, and a Mac on the new name still links to one on the old name. Delete the old PeriHop.app after installing PairHop
+- The README and CONTRIBUTING name the real requirement, macOS 26 on Apple Silicon
+
 ## [0.2.0] - 2026-10-20
 
 ### Added

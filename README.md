@@ -1,16 +1,16 @@
-# PeriHop
+# PairHop
 
-[![Build](https://github.com/posadskiy/perihop/actions/workflows/build.yml/badge.svg)](https://github.com/posadskiy/perihop/actions/workflows/build.yml)
-[![Latest release](https://img.shields.io/github/v/release/posadskiy/perihop)](https://github.com/posadskiy/perihop/releases/latest)
+[![Build](https://github.com/posadskiy/pairhop/actions/workflows/build.yml/badge.svg)](https://github.com/posadskiy/pairhop/actions/workflows/build.yml)
+[![Latest release](https://img.shields.io/github/v/release/posadskiy/pairhop)](https://github.com/posadskiy/pairhop/releases/latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Platform: macOS](https://img.shields.io/badge/platform-macOS%2013%2B-lightgrey)](#requirements)
+[![Platform: macOS](https://img.shields.io/badge/platform-macOS%2026%2B-lightgrey)](#requirements)
 
 Menu bar app for moving a Bluetooth keyboard, trackpad, or mouse from one
 Mac to another. macOS's Universal Control covers this only if both Macs are
 signed into the same Apple ID and nearby each other — for anything else
 (different accounts, work + personal Macs, one of them not around), you're
 digging through System Settings to unpair and re-pair by hand, or buying a
-paid utility. PeriHop connects the accessory to the Mac you're using.
+paid utility. PairHop connects the accessory to the Mac you're using.
 
 ## Features
 
@@ -19,18 +19,27 @@ paid utility. PeriHop connects the accessory to the Mac you're using.
 - **Hand off** — disconnects the devices so the other Mac can take them. Each row has its own Use here and Hand off
 - **Keeps the bond when it can** — a device that remembers both Macs is reconnected, and the old pairing is forgotten only if the accessory is actually in range and still refuses
 - **Linked Macs** — a pairing code both Macs share, so a stranger on the network can't release your keyboard. A Mac that fails the code five times is ignored for fifteen minutes. If the other Mac's identity changes, switching waits until you tap Trust
-- **Shortcuts and links** — Settings records Use here, Hand off, and Toggle. `perihop://switch?direction=take` does the same from another app. A checked display takes the devices when it connects
-- **Zero dependencies** — Bluetooth is handled in the app; no Homebrew or anything else to install
+- **Shortcuts and links** — Settings records Use here, Hand off, and Toggle. `pairhop://switch?direction=take` does the same from another app. A checked display takes the devices when it connects
+- **Updates itself** — checks GitHub Releases once a day and installs in the background; Check for Updates… in About asks right away
+- **Nothing else to install** — Bluetooth is handled in the app, no Homebrew or helper tools
 - **Apple Silicon** — the release build is arm64
 
 ## Install
 
-Download `PeriHop.dmg`, open it, and drag PeriHop to Applications.
+Download `PairHop.dmg`, open it, and drag PairHop to Applications.
 
 The disk image is signed with a Developer ID and notarized, so Gatekeeper
 opens it on double-click. macOS will ask for Bluetooth access the first time
 you scan for or switch devices — grant it in the prompt, or in
 **System Settings → Privacy & Security → Bluetooth** if you missed it.
+
+PairHop was called PeriHop up to 0.3. It installs as a separate app: move your
+settings over by launching it once, then delete the old PeriHop.app. Old `perihop://`
+links still work.
+
+PairHop updates itself with [Sparkle](https://sparkle-project.org), reading the
+`appcast.xml` attached to the latest GitHub release. Copies of 0.3.0 and earlier
+do not have it, so install the next release by hand once.
 
 ## Usage
 
@@ -51,10 +60,10 @@ row has the same two buttons, for moving one accessory at a time.
 
 **Without opening the menu** — Settings can record shortcuts for Use here,
 Hand off, and Toggle. Another app can open
-`perihop://switch?direction=take` (or `send` or `toggle`). Add
+`pairhop://switch?direction=take` (or `send` or `toggle`). Add
 `peripheral=Magic%20Keyboard` to name one device. Checking a display under
 "Dock a display" takes the devices when that display connects. If a device
-drops while it should be on this Mac, PeriHop keeps trying for about two
+drops while it should be on this Mac, PairHop keeps trying for about two
 minutes, including after you turn it off and on.
 
 **Changing devices** — "Edit Devices…" re-runs the same scan/select flow.
@@ -73,28 +82,28 @@ minutes, including after you turn it off and on.
 - **Shortcuts** — Use here, Hand off, and Toggle.
 - **Dock a display** — take the devices when that display connects.
 
-Config is stored at `~/Library/Application Support/PeriHop/config.json`.
+Config is stored at `~/Library/Application Support/PairHop/config.json`.
 The pairing code is stored in the Keychain.
 
 ## Requirements
 
-- macOS 13 (Ventura) or later
+- macOS 26 (Tahoe) or later, on an Apple Silicon Mac
 - A Bluetooth keyboard, trackpad, mouse, or other HID accessory
 
 ## Building from source
 
 ```bash
-git clone https://github.com/posadskiy/perihop.git
-cd perihop
+git clone https://github.com/posadskiy/pairhop.git
+cd pairhop
 export NOTARY_KEYCHAIN_PROFILE="grammarbar-notary"
 ./build.sh
-open build/PeriHop.app
+open build/PairHop.app
 ```
 
 `build.sh` compiles a release arm64 binary, signs it with the Developer ID
-already in the login keychain, notarizes it, and writes `build/PeriHop.dmg`.
+already in the login keychain, notarizes it, and writes `build/PairHop.dmg`.
 That disk image is what gets shared. The same Apple Developer team that signs
-GrammarBar signs PeriHop; no separate app record is required. The script
+GrammarBar signs PairHop; no separate app record is required. The script
 needs the network so Apple can timestamp the signature and notarize the image.
 
 For quick iteration you can also run it unbundled — this shows a Dock icon
@@ -106,6 +115,26 @@ swift run
 ```
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for more.
+
+### Releasing
+
+1. Bump `CFBundleShortVersionString` and `CFBundleVersion` in `Sources/PairHop/Info.plist`.
+   Sparkle compares `CFBundleVersion`, so it has to go up every release. Merging to `main`
+   makes the Release workflow tag `v<version>` and open the release.
+2. Once per Mac, run `scripts/sparkle-keys.sh`. It keeps the Sparkle private key in the login
+   keychain and writes the public key to `Config/SUPublicEDKey`, which is committed. If the
+   keychain already has a Sparkle key, PairHop shares it.
+3. `./build.sh` writes `build/PairHop.dmg`, `build/PairHop-<version>.zip` and a signed
+   `build/appcast.xml`. `./publish.sh` attaches them to the release, the feed last.
+   Installed copies read `releases/latest/download/appcast.xml`.
+
+## Reporting a bug
+
+Settings → Troubleshooting → **Save Diagnostics…** writes a text file with PairHop's
+log and the Bluetooth messages for your accessories. **Report…** opens the GitHub bug form
+with your version and macOS already filled in. Drag the file into the form. It lists device
+names and addresses, so look it over first. Bluetooth problems often depend on the accessory,
+so the file is usually what gets one fixed.
 
 ## Contributing
 
@@ -119,7 +148,7 @@ See [SECURITY.md](SECURITY.md) for how to report vulnerabilities.
 
 ## Acknowledgments
 
-- [IOBluetooth](https://developer.apple.com/documentation/iobluetooth) — the macOS Bluetooth framework PeriHop uses to connect and pair accessories.
+- [IOBluetooth](https://developer.apple.com/documentation/iobluetooth) — the macOS Bluetooth framework PairHop uses to connect and pair accessories.
 
 ## License
 
