@@ -21,6 +21,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.accessory)
         StatusMenu.shared.start(model: model)
+        Updates.shared.start()
     }
 
     func application(_ application: NSApplication, open urls: [URL]) {

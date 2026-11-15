@@ -20,7 +20,8 @@ paid utility. PairHop connects the accessory to the Mac you're using.
 - **Keeps the bond when it can** — a device that remembers both Macs is reconnected, and the old pairing is forgotten only if the accessory is actually in range and still refuses
 - **Linked Macs** — a pairing code both Macs share, so a stranger on the network can't release your keyboard. A Mac that fails the code five times is ignored for fifteen minutes. If the other Mac's identity changes, switching waits until you tap Trust
 - **Shortcuts and links** — Settings records Use here, Hand off, and Toggle. `pairhop://switch?direction=take` does the same from another app. A checked display takes the devices when it connects
-- **Zero dependencies** — Bluetooth is handled in the app; no Homebrew or anything else to install
+- **Updates itself** — checks GitHub Releases once a day and installs in the background; Check for Updates… in About asks right away
+- **Nothing else to install** — Bluetooth is handled in the app, no Homebrew or helper tools
 - **Apple Silicon** — the release build is arm64
 
 ## Install
@@ -31,6 +32,10 @@ The disk image is signed with a Developer ID and notarized, so Gatekeeper
 opens it on double-click. macOS will ask for Bluetooth access the first time
 you scan for or switch devices — grant it in the prompt, or in
 **System Settings → Privacy & Security → Bluetooth** if you missed it.
+
+PairHop updates itself with [Sparkle](https://sparkle-project.org), reading the
+`appcast.xml` attached to the latest GitHub release. Copies of 0.3.0 and earlier
+do not have it, so install the next release by hand once.
 
 ## Usage
 
@@ -106,6 +111,18 @@ swift run
 ```
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for more.
+
+### Releasing
+
+1. Bump `CFBundleShortVersionString` and `CFBundleVersion` in `Sources/PairHop/Info.plist`.
+   Sparkle compares `CFBundleVersion`, so it has to go up every release. Merging to `main`
+   makes the Release workflow tag `v<version>` and open the release.
+2. Once per Mac, run `scripts/sparkle-keys.sh`. It keeps the Sparkle private key in the login
+   keychain and writes the public key to `Config/SUPublicEDKey`, which is committed. If the
+   keychain already has a Sparkle key, PairHop shares it.
+3. `./build.sh` writes `build/PairHop.dmg`, `build/PairHop-<version>.zip` and a signed
+   `build/appcast.xml`. `./publish.sh` attaches them to the release, the feed last.
+   Installed copies read `releases/latest/download/appcast.xml`.
 
 ## Contributing
 

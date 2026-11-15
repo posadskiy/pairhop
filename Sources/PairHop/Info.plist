@@ -34,6 +34,14 @@
     <array>
         <string>_perihop._tcp</string>
     </array>
+    <key>SUEnableAutomaticChecks</key>
+    <true/>
+    <key>SUAutomaticallyUpdate</key>
+    <true/>
+    <key>SUScheduledCheckInterval</key>
+    <integer>86400</integer>
+    <key>SUScheduledImpatientCheckInterval</key>
+    <integer>172800</integer>
     <key>CFBundleURLTypes</key>
     <array>
         <dict>

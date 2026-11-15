@@ -47,6 +47,15 @@ struct InfoView: View {
             Divider()
 
             Button {
+                Updates.shared.check()
+            } label: {
+                Label("Check for Updates…", systemImage: "arrow.triangle.2.circlepath")
+                    .font(.caption)
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.bordered)
+
+            Button {
                 openIssueTracker()
             } label: {
                 Label("Report an Issue", systemImage: "exclamationmark.bubble")

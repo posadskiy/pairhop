@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- PairHop updates itself with Sparkle, reading the appcast attached to the latest GitHub release. Check for Updates… is in About
+- `publish.sh` attaches the disk image, the update archive and the signed appcast to the GitHub release
+
 ### Changed
 - The README and CONTRIBUTING name the real requirement, macOS 26 on Apple Silicon
 
