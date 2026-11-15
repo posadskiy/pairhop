@@ -25,6 +25,7 @@ cp "$bin/PairHop" "$app/Contents/MacOS/PairHop"
 cp "Sources/PairHop/Info.plist" "$app/Contents/Info.plist"
 cp "Resources/AppIcon.icns" "$app/Contents/Resources/AppIcon.icns"
 cp "THIRD_PARTY_LICENSES.md" "$app/Contents/Resources/THIRD_PARTY_LICENSES.md"
+cp "Resources/PrivacyInfo.xcprivacy" "$app/Contents/Resources/PrivacyInfo.xcprivacy"
 
 plist="$app/Contents/Info.plist"
 for key in SUEnableAutomaticChecks SUAutomaticallyUpdate SUScheduledCheckInterval SUScheduledImpatientCheckInterval; do
